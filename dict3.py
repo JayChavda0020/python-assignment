@@ -2,7 +2,7 @@ d = {
     "Name" : "Jay",
     "DOB" : "21-22001",
     "DOB" : "21-02-2001",
-    "Mobile" : 9979025534,
+    "Mobile" : 91235463211,
     "Lang" : ["Python","HTML","JS"]
 }
 
@@ -43,7 +43,7 @@ d["email"] = "jay123"
 print(d)
 print("*"*50)
 
-d.update({"email":"jay34","mobile":9054003882})
+d.update({"email":"jay34","mobile":854621165546})
 print(d)
 print("*"*50)
 
