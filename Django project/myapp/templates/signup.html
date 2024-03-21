@@ -1,0 +1,87 @@
+{% extends 'header.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		span{
+			color: red;
+		}
+	</style>
+	<script type="text/javascript">
+		function checkFname(){
+			var f=document.signup.fname.value;
+			if(f==""){
+				document.getElementById("fname").innerHTML="Please Enter First Name";
+			}
+			else{
+				document.getElementById("fname").innerHTML="";
+			}
+		}
+		function checkLname{
+			var l=document.signup.lname.value;
+			if(l==""){
+				document.getElementById("lname").innerHTML="Please Enter Last Name"
+			}
+			else{
+				document.getElementById("lname").innerHTML=""
+			}
+		}
+		function checkEmail(){
+			var e=document.signup.email.value;
+			if(e==''){
+				document.getElementById("email").innerHTML="Please Enter Email";
+			}
+			else{
+				document.getElementById("email").innerHTML="";
+			}
+		}
+	</script>
+</head>
+<body>
+	<center>
+		<h1>Sign Up</h1>
+		{% if msg %}
+			<b style="color: blue;">{{msg}}</b>
+		{% endif %}
+		<form method="post" action="{% url 'signup' %}">
+			{% csrf_token %}
+			<table>
+				<tr>
+					<td>First Name</td>
+					<td><input type="text" name="fname" onblur="checkFname();"></td>
+					<td><span id="fname"></span></td>
+				</tr>
+				<tr>
+					<td>Last Name</td>
+					<td><input type="text" name="lname" onblur="checkLname();"></td>
+					<td><span id="lname"></span></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><input type="text" name="email"></td>
+				</tr>
+				<tr>
+					<td>Mobile</td>
+					<td><input type="text" name="mobile"></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><input type="password" name="password"></td>
+				</tr>
+				<tr>
+					<td>Confirm Password</td>
+					<td><input type="password" name="password"></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input type="submit" value="Sign Up" class="btn btn-primary"></td>
+				</tr>
+			</table>
+		</form>
+	</center>
+</body>
+</html>
+{% endblock %}
