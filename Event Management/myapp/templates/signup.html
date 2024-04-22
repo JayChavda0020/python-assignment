@@ -1,0 +1,87 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script type="text/javascript">
+		function checkFname(){
+			var f=document.signup.fname.value;
+			var reg = /^[A-Za-z]+$/;
+			if(f==""){
+				document.getElementById("fname").innerHTML="Please Enter First Name";
+			}
+			else if(!reg.test(f)){
+				document.getElementById("fname").innerHTML="Please Enter Only Alphabet";
+			}
+			else{
+				document.getElementById("fname").innerHTML="";
+			}
+		}
+	</script>
+</head>
+<body>
+	    <div class="hero-wrap" style="background-image: url('{% static 'images/bg_1.jpg' %}');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
+          <div class="col-lg-6 col-md-6 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+            
+          </div>
+          <div class="col-lg-2 col"></div>
+          <div class="col-lg-4 col-md-6 mt-0 mt-md-5">
+          	<form method="post" action="{% url 'signup' %}" class="request-form ftco-animate" enctype="multipart/form-data">
+          	{% csrf_token %}
+          		<h2><center>Sign up</center></h2>
+          		{% if msg %}
+								<b style="color: blue;">{{msg}}</b>
+							{% endif %}
+							<div class="form-group">
+	    					<select name="usertype" class="form-control">
+	    						<option>---Select User Type---</option>
+	    						<option value="user">User</option>
+	    						<option value="manager">Manager</option>
+	    					</select>
+	    				</div>
+          			<table>
+          				<tr>
+          				<td>
+		    				<div class="form-group">
+		    					<input type="text" name="fname" class="form-control" placeholder="First Name" onblur="checkFname();">
+		    					<span id="fname"></span>
+		    				</div>
+	    				</td>
+	    				<td>
+		    				<div class="form-group">
+		    					<input type="text" name="lname" class="form-control" placeholder="Last Name">
+		    				</div>
+		    			</tr>
+	    				</td>
+	    			</table>
+	    			<div class="form-group">
+	    				<input type="text" name="email" class="form-control" placeholder="Email">
+	    			</div>
+    				<div class="form-group">
+	    				<input type="text" name="mobile" class="form-control" placeholder="Mobile">
+	    			</div>
+	    			<div class="form-group">
+	    				<input type="password" name="password" class="form-control" placeholder="Password">
+	    			</div>
+	    			<div class="form-group">
+	    				<input type="password" name="cpassword" class="form-control" placeholder="Confirm Password">
+	    			</div>
+	            	<div class="form-group">
+	              		<input type="submit" value="Sign Up" class="btn btn-primary py-3 px-4">
+	            	</div>
+          		
+	    	</form>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
+{% endblock %}
